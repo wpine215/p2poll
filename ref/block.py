@@ -1,10 +1,12 @@
 import hashlib as hasher
 
 class Block:
-	def __init__(self, index, timestamp, data, previous_hash):
+	def __init__(self, index, timestamp, voteData, pollData = None, voteData = None, previous_hash):
 		self.index = index
 		self.timestamp = timestamp
-		self.data = data
+		self.votes = voteData
+		self.polls = pollData
+		self.voters = voteData
 		self.previous_hash = previous_hash
 		self.hash = self.hash_block()
 
