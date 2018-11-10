@@ -4,9 +4,9 @@ import datetime as date
 
 
 def app():
-	firstBlock = Block(0,date.datetime.now(),"Genesis Block", "0")
-	secondBlock = Block(1,date.datetime.now(),"Trump",firstBlock.hash)
-	thirdBlock = Block(1,date.datetime.now(),"Trump",secondBlock.hash)
+	firstBlock = Block(0,date.datetime.now(),"0","Genesis Block")
+	secondBlock = Block(1,date.datetime.now(),firstBlock.hash,"Trump")
+	thirdBlock = Block(2,date.datetime.now(),secondBlock.hash,"Trump")
 	
 	print(secondBlock.hash)
 	print(thirdBlock.hash)
