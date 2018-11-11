@@ -25,27 +25,26 @@ from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
 
-class Transaction:
-
-    def __init__(self, sender_address, sender_private_key, recipient_address, value):
-        self.sender_address = sender_address
-        self.sender_private_key = sender_private_key
-        self.recipient_address = recipient_address
+class Vote:
+    def __init__(self, voter_id, voter_key, poll_id, value):
+        self.voter_id = voter_id
+        self.voter_key = voter_key
+        self.poll_id = poll_id
         self.value = value
 
     def __getattr__(self, attr):
         return self.data[attr]
 
     def to_dict(self):
-        return OrderedDict({'sender_address': self.sender_address,
-                            'recipient_address': self.recipient_address,
+        return OrderedDict({'voter_id': self.voter_id,
+                            'poll_id': self.poll_id,
                             'value': self.value})
 
-    def sign_transaction(self):
+    def sign_vote(self):
         """
         Sign transaction with private key
         """
-        private_key = RSA.importKey(binascii.unhexlify(self.sender_private_key))
+        private_key = RSA.importKey(binascii.unhexlify(self.voter_key))
         signer = PKCS1_v1_5.new(private_key)
         h = SHA.new(str(self.to_dict()).encode('utf8'))
         return binascii.hexlify(signer.sign(h)).decode('ascii')
