@@ -2,6 +2,7 @@ certifi==2018.10.15
 chardet==3.0.4
 Click==7.0
 creds==1.0.15
+crypto==1.4.1
 Flask==1.0.2
 Flask-Session==0.3.1
 idna==2.7
@@ -9,13 +10,17 @@ itsdangerous==1.1.0
 Jinja2==2.10
 kademlia==1.1
 MarkupSafe==1.1.0
+Naked==0.1.31
 PyJWT==1.6.4
 PySocks==1.6.8
 pytz==2018.7
+PyYAML==3.13
 requests==2.20.1
 rpcudp==3.0.0
+shellescape==3.4.1
 six==1.11.0
 twilio==6.19.2
 u-msgpack-python==2.5.0
 urllib3==1.24.1
+uuid==1.30
 Werkzeug==0.14.1
