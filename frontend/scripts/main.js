@@ -13,7 +13,7 @@ $(document).ready(function() {
                 break;
             }
         }
-                
+
         if (voterid == '') {
             alert("Please enter a valid voter ID.")
         }
@@ -53,6 +53,7 @@ $(document).ready(function() {
         }
         else {
             alert(voterid);
+            document.getElementById("yourVote").innerHTML = "You voted for...";
             /*$.ajax({
                 type: "post",
                 data: {"voterid": voterid},
