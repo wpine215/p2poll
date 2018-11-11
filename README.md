@@ -14,8 +14,8 @@ pip install -r requirements.txt
 * JavaScript
 
 ## Contributors
-* Bart Considine
-* Jeff Luen
-* Julia Ma
-* William Pine
-* Yirui Ruan
+* **Bart Considine**
+* **Jeff Luen**
+* **Julia Ma**
+* **William Pine**
+* **Yirui Ruan**
