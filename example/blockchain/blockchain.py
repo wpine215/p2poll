@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from urllib.parse import urlparse
 
 import binascii
 '''
