@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+        
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content=""> -->
+
+    <title>Vote</title>
+
+        <!-- Bootstrap core CSS 
+        <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link href="styles/custom.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+    <div id="nav-menu"></div>
+
+    <h2>Submit Your Vote</h2>
+
+    <div class="userinput" id="vote">
+        <div id="userid">
+            <label class="votelabel" for="idnum">Voter ID: </label>
+            <input class="voteinput" type="text" id="idnum">
+        </div>
+
+        <div id="castvote">
+            <label class="votelabel" for="choices">Candidates: </label>
+            <div id="choices">
+                <input type="radio" name="candidate" value="Nero"> Emperor Nero<br>
+                <input type="radio" name="candidate" value="Gandhi"> Mahatma Gandhi<br>
+                <input type="radio" name="candidate" value="Ferdinand"> Archduke Franz Ferdinand<br>
+                <input type="radio" name="candidate" value="Mao"> Chairman Mao<br>
+            </div>
+        </div>
+
+        <button value="vote" id="submitvote">Vote</button>
+    </div>
+
+    <br>
+
+    <div class="userinput" id="validation">
+        <div id="userid">
+            <label class="votelabel" for="confirmnum">Confirmation Number: </label>
+            <input class="voteinput" type="text" id="confirmnum">
+        </div>
+        <button value="validate" id="submitvalidate">Validate</button>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
