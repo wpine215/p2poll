@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blockchain Client</title>
+    <title>p2poll client</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,14 +22,14 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Blockchain Client</a>
+        <a class="navbar-brand" href="#">p2poll client</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Wallet Generator
+              <a class="nav-link" href="/">Voter Registration
               </a>
             </li>
             <li class="nav-item">
@@ -53,7 +53,7 @@
 
           <div class="card-body">
             <h4 class="card-title">View Votes</h4>
-            <p class="card-text">Enter a blockchain node URL and click on "View Transactions" button to check all transactions</p>
+            <p class="card-text">Enter a blockchain node URL and click on "View Votes" button to check all votes</p>
           </div>
 
         </div>
@@ -63,9 +63,9 @@
     <div class="container alert alert-secondary">
 
         <div class="row">
-          <label class="col-sm-2">Node URL:</label>
+          <label class="col-sm-2">Node IP Addresses:</label>
           <div class="col-sm-10">
-            <textarea id="node_url" rows="1" class="form-control">http://127.0.0.1:5000</textarea>
+            <input type="text" id="node_url" class="form-control" value="http://127.0.0.1:5000">
           </div>
         </div>
 
@@ -73,7 +73,7 @@
 
         <div class="row">
           <div class="col-lg-12 text-center">
-            <input type="button" id="view_transactions" class="btn btn-primary btn-lg" value="View Transactions">
+            <input type="button" id="view_votes" class="btn btn-primary btn-lg" value="View Votes">
           </div>
         </div>
 
@@ -82,7 +82,7 @@
     <br>
     <!-- Blockchain Transactions Table -->
     <div class="container">
-      <table id="transactions_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="votes_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
       </table>
     </div>
 
@@ -99,7 +99,7 @@
       $(function(){
 
         
-        $('#view_transactions').click(function(){
+        $('#view_votes').click(function(){
 
           $.ajax({
             url: document.getElementById("node_url").value + "/chain",
@@ -108,24 +108,24 @@
 
               console.log(response);
               //Generate Transactions Table
-              var transactions = [];
+              var votes = [];
               count = 1;
 
               for (i = 1; i < response.length; i++) { 
-                for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
+                for (j = 0; j < response["chain"][i]["votes"].length; j++) {
 
                   //format date 
                   var options = {  year: "numeric", month: "short",  day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"  };
                   var date = new Date(response["chain"][i]["timestamp"] * 1000);
                   var formattedDateTime = date.toLocaleTimeString("en-us", options);
 
-                  transaction = [count,
-                                response["chain"][i]["transactions"][j]["recipient_address"],
-                                response["chain"][i]["transactions"][j]["sender_address"],
-                                response["chain"][i]["transactions"][j]["value"],
+                  vote = [count,
+                                response["chain"][i]["votes"][j]["voter_id"],
+                                response["chain"][i]["votes"][j]["poll_id"],
+                                response["chain"][i]["votes"][j]["value"],
                                 formattedDateTime,
                                 response["chain"][i]["block_number"]];
-                  transactions.push(transaction);
+                  votes.push(vote);
 
                   count += 1;
                 };
@@ -135,9 +135,9 @@
                 $('#transactions_table').dataTable( {
                   data: transactions,
                   columns: [{ title: "#" },
-                            { title: "Recipient Address"},
-                            { title: "Sender Address"},
-                            { title: "Value"},
+                            { title: "Voter ID"},
+                            { title: "Poll ID"},
+                            { title: "Choice"},
                             { title: "Timestamp"},
                             { title: "Block"}],
                   columnDefs: [ {targets: [1,2,3,4,5], render: $.fn.dataTable.render.ellipsis( 25 )}]
