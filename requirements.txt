@@ -24,3 +24,9 @@ u-msgpack-python==2.5.0
 urllib3==1.24.1
 uuid==1.30
 Werkzeug==0.14.1
+# for mac users, you will need to uninstall crypto, and pycrypto if you
+# have any of them installed, and reinstall pycryto
+#
+# for Windows users, change the capitalization of crypto to Crypto
+# to use withdrawn, you will need to go to crypto\Random\OSRNG\nt.py
+# and chnage   import winrandom   into from . import winrandom
