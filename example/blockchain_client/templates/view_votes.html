@@ -80,9 +80,16 @@
     </div>
 
     <br>
-    <!-- Blockchain Transactions Table -->
+    <!-- Blockchain Votes Table -->
     <div class="container">
       <table id="votes_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      </table>
+    </div>
+    <br> 
+
+    <!-- Blockchain Mining Table -->
+    <div class="container">
+      <table id="mining_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
       </table>
     </div>
 
@@ -109,6 +116,7 @@
               console.log(response);
               //Generate Transactions Table
               var votes = [];
+              var mines = [];
               count = 1;
 
               for (i = 1; i < response.length; i++) { 
@@ -125,8 +133,11 @@
                                 response["chain"][i]["votes"][j]["value"],
                                 formattedDateTime,
                                 response["chain"][i]["block_number"]];
-                  votes.push(vote);
-
+                  if (vote[1] !== "THE BLOCKCHAIN") {
+                    votes.push(vote);
+                  } else {
+                    mines.push(vote);
+                  }
                   count += 1;
                 };
               };
@@ -142,7 +153,18 @@
                             { title: "Block"}],
                   columnDefs: [ {targets: [1,2,3,4,5], render: $.fn.dataTable.render.ellipsis( 25 )}]
                 } );
-
+                /*
+                $('#mining_table').dataTable( {
+                  data: mines,
+                  columns: [{ title: "#" },
+                            { title: "Issued By"},
+                            { title: "Miner"},
+                            { title: "Credits"},
+                            { title: "Timestamp"},
+                            { title: "Block"}],
+                  columnDefs: [ {targets: [1,2,3,4,5], render: $.fn.dataTable.render.ellipsis( 25 )}]
+                } );
+              */
             },
             error: function(error){
               console.log(error);
