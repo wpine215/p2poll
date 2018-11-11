@@ -3,32 +3,39 @@
 
 <head>
     <meta charset="utf-8">
-        
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content=""> -->
 
     <title>Vote</title>
 
-        <!-- Bootstrap core CSS 
-        <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-
+    <link href="styles/Semantic-UI-CSS-master/semantic.css" rel="stylesheet">
     <link href="styles/custom.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="styles/Semantic-UI-CSS-master/semantic.js"></script>
 
 </head>
 
 <body>
-    <div id="nav-menu"></div>
+    <div class="ui large inverted menu" id="navbar">
+        <a class="item" id="navbarHome" href="index.html">Home</a>
+        <a class="item" id="navbarVote" href="vote.html">Vote</a>
+        <a class="item active" id="navbarView" href="view.html">View Vote</a>
+    </div>
 
-    <h2>View Your Vote</h2>
+    <div class="ui raised very padded text container segment">
+        <h1 class="ui header">View Your Vote</h1>
 
-    <div class="userinput">
-        <div id="userid">
-            <label for="voterid">Voter ID: </label>
-            <input type="text" id="voterid">
+        <div class="ui large form">
+
+            <div class="required inline field">
+                <label>Voter ID:</label>
+                <input type="text" placeholder="Voter ID Number" id="voterid">
+            </div>
+
+            <button class="ui button" id="viewvote">View</button>
         </div>
 
-        <button value="view" id="viewvote">View</button>
     </div>
 
     <br>

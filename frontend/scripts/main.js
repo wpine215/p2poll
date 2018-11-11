@@ -1,10 +1,8 @@
-document.getElementById("nav-menu").innerHTML = '<div class="navbar" id="navbar">' 
-    + '<ul><li><a id="navbarHome" href="index.html">Home</a></li>'
-    + '<li><a id="navbarVote" href="vote.html">Vote</a></li>'
-    + '<li><a id="navbarView" href="view.html">View Vote</a></li></ul>'
-    + '</div>';
-
 $(document).ready(function() {
+    $('.ui.radio.checkbox')
+        .checkbox()
+    ;
+
     $("#submitvote").click(function(){
         var voterid = document.getElementById("idnum").value;
         var choices = document.getElementsByName("candidate");
@@ -15,7 +13,7 @@ $(document).ready(function() {
                 break;
             }
         }
-        
+                
         if (voterid == '') {
             alert("Please enter a valid voter ID.")
         }
