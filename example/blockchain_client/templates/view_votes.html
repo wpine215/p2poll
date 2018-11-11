@@ -141,6 +141,38 @@
                   count += 1;
                 };
               };
+              // print out results of poll 
+              pollnumber = 14; //change poll number
+              var voterDict = {}
+              var tally = {}
+              var rvotes = votes.reverse();
+              for (var k=0; k < votes.length; k++){
+                if ((Object.keys(voterDict).includes("" + rvotes[k][1])) && rvotes[k][2] == pollnumber){
+                  continue;
+                }
+                else{     
+                  voterDict[rvotes[k][1]] = rvotes[k][3] 
+
+                  if ((Object.keys(tally).includes(rvotes[k][3]))&& rvotes[k][2] == pollnumber) {
+                    
+                    tally[rvotes[k][3]] = tally[rvotes[k][3]] + 1;
+                  }
+                  else{
+                    tally[rvotes[k][3]] = 1;
+                  } 
+                    // console.log(rvotes[k]);
+                  }
+              }
+
+
+
+              // 2D array votes [index,voterid,pollid,value,date,blocknumber]
+              var rvotes = votes.reverse();
+              for (var k=0; k < votes.length(); k++ ){
+                contole.log(rvotes[k]);
+              }
+
+
 
               // Restrict a column to 10 characters, do split words
                 $('#votes_table').dataTable( {

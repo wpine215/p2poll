@@ -1,0 +1,8 @@
+// 2D array votes [index,voterid,pollid,value,date,blocknumber]
+
+
+
+var rvotes = votes.reverse();
+for (var k=0; k < votes.length(); k++ ){
+    contole.log(rvotes[k]);
+}
