@@ -3,23 +3,184 @@
 
 <head>
     <meta charset="utf-8">
-        
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content=""> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
 
     <title>Blockchain Voting</title>
 
         <!-- Bootstrap core CSS 
         <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 
+    <link href="styles/Semantic-UI-CSS-master/semantic.css" rel="stylesheet">
     <link href="styles/custom.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="styles/Semantic-UI-CSS-master/semantic.js"></script>
+
+    <script>
+    $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
 
 </head>
 
 <body>
-    <div id="nav-menu"></div>
+    <!-- <div class="ui large inverted menu" id="navbar"> 
+        <a class="item active" id="navbarHome" href="index.html">Home</a>
+        <a class="item" id="navbarVote" href="vote.html">Vote</a>
+        <a class="item" id="navbarView" href="view.html">View Vote</a>
+    </div>
 
-    <h2>Home</h2>
+    <div class="ui text container">
+        <h1 class="ui header">
+            A New Age of Voting...
+        </h1>
+        <h2>Vote with Blockchain technologies.</h2>
+    </div> -->
+
+   <!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item" id="navbarHome" href="index.html">Home</a>
+    <a class="item" id="navbarVote" href="vote.html">Vote</a>
+    <a class="item" id="navbarView" href="view.html">View Your Vote</a>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item" id="navbarHome" href="index.html">Home</a>
+    <a class="item" id="navbarVote" href="vote.html">Vote</a>
+    <a class="item" id="navbarView" href="view.html">View Your Vote</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item" id="navbarHome" href="index.html">Home</a>
+        <a class="item" id="navbarVote" href="vote.html">Vote</a>
+        <a class="item" id="navbarView" href="view.html">View Your Vote</a>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        Welcome to a New Age in Voting
+      </h1>
+      <h2>Blockchain woot woot</h2>
+    </div>
+
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Preventing Voter Fraud with Blockchain</h3>
+          <p>We use Blockchain to decentralize elections, which will allow for greater transparency in the voting process.</p>
+        </div>
+        <div class="six wide right floated column">
+          <img src="images/blockchain.jpg" class="ui large bordered rounded image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button" href="https://www.blockchain.com/">Learn About Blockchain</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>"What a revolutionary idea!"</h3>
+          <p>That is what they all say about us</p>
+        </div>
+        <div class="column">
+          <h3>"I wish they had thought of this sooner."</h3>
+          <p>
+            <img src="images/hitler.jpg" class="ui avatar image"> A Concerned Citizen
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h3 class="ui header">Voter Fraud</h3>
+      <p>Accusations and suspicions in regards to the integrity of elections have always been an issue, but in recent years, we have seen an increasing distrust in the voting process. Learn about different types of voter fraud and how they make affect election results.</p>
+      <a class="ui large button" href="https://ballotpedia.org/Voter_fraud">Read More</a>
+      <h4 class="ui horizontal header divider">
+      </h4>
+      <h3 class="ui header">Voting With Blockchain</h3>
+      <p>Blockchain is the most trusted and fastest growing crypto company, helping millions across the globe have an easy and safe way to access cryptocurrencies. Voting with blockchain technology will boost voter participation and help restore the public’s trust in the electoral process and democracy.</p>
+      <a class="ui large button" href="https://www.nytimes.com/2018/11/05/opinion/online-blockchain-voting.html">Learn Why</a>
+    </div>
+  </div>
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+                <a class="item" id="navbarHome" href="index.html">Home</a>
+                <a class="item" id="navbarVote" href="vote.html">Vote</a>
+                <a class="item" id="navbarView" href="view.html">View Your Vote</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Interesting Links</h4>
+          <div class="ui inverted link list">
+            <a href="https://en.wikipedia.org/wiki/Electoral_fraud" class="item">Electoral Fraud</a>
+            <a href="http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/" class="item">Blockchain in Python</a>
+            <a href="https://bostonhacks.io/" class="item">BostonHacks</a>
+            <a href="https://github.com/wpine215/p2poll" class="item">Code for This Project</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Meet the Team</h4>
+          <p>The contributors to this project are Julia Ma, Jeff, Yirui, Bart, and Will. We thank you for your time and hope you have a fantastic day! :)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+      
 
     <script src="scripts/main.js"></script>
 </body>
