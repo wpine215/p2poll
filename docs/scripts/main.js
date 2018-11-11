@@ -52,8 +52,7 @@ $(document).ready(function() {
             alert("Please enter a valid voter ID.")
         }
         else {
-            alert(voterid);
-            document.getElementById("yourVote").innerHTML = "You voted for...";
+            document.getElementById("yourVote").innerHTML = "You voted for Emperor Nero!";
             /*$.ajax({
                 type: "post",
                 data: {"voterid": voterid},
