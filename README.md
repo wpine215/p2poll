@@ -7,6 +7,10 @@ Make sure you are running Python >=3.6. Install the necessary requirements into 
 pip install -r requirements.txt
 ```
 
+For mac users, you will need to uninstall crypto, and pycrypto if you have any of them installed, and reinstall pycryto
+
+For Windows users, change the capitalization of crypto to Crypto to use withdrawn, you will need to go to ```crypto\Random\OSRNG\nt.py ``` and chnage   ```import winrandom```   into ```from . import winrandom```
+
 ## Built With
 * Python
 * Flask
