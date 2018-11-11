@@ -21,30 +21,30 @@ def index():
 def configure():
     return render_template('./configure.html')
 
-@app.route('/transactions/new', methods=['POST'])
-def new_transaction():
+@app.route('/votes/new', methods=['POST'])
+def new_vote():
     values = request.form
 
     # Validate submitted fields for completion
-    required = ['sender_address', 'recipient_address', 'amount', 'signature']
+    required = ['voter_id', 'poll_id', 'value', 'signature']
     if not all(k in values for k in required):
         return 'Missing values', 400
 
-    transaction_result = blockchain.submit_transaction(values['sender_address'], values['recipient_address'], values['amount'], values['signature'])
+    vote_result = blockchain.submit_vote(values['voter_id'], values['poll_id'], values['value'], values['signature'])
 
-    if transaction_result == False:
-        response = {'message': 'Invalid Transaction!'}
+    if vote_result == False:
+        response = {'message': 'Invalid Vote!'}
         return jsonify(response), 406
     else:
-        response = {'message': 'Transaction will be added to block '+ str(transaction_result)}
+        response = {'message': 'Vote will be added to block '+ str(vote_result)}
         return jsonify(response), 201
 
-@app.route('/transactions/get', methods=['GET'])
-def get_transactions():
+@app.route('/votes/get', methods=['GET'])
+def get_votes():
     #Get transactions from transactions pool
-    transactions = blockchain.transactions
+    votes = blockchain.votes
 
-    response = {'transactions': transactions}
+    response = {'votes': votes}
     return jsonify(response), 200
 
 @app.route('/chain', methods=['GET'])
@@ -62,7 +62,7 @@ def mine():
     nonce = blockchain.proof_of_work()
 
     # We must receive a reward for finding the proof.
-    blockchain.submit_transaction(sender_address=MINING_SENDER, recipient_address=blockchain.node_id, value=MINING_REWARD, signature="")
+    blockchain.submit_vote(voter_id=MINING_SENDER, poll_id=blockchain.node_id, value=MINING_REWARD, signature="")
 
     # Forge the new block by adding it to the chain
     previous_hash = blockchain.hash(last_block)
@@ -71,7 +71,7 @@ def mine():
     response = {
         'message': "New Block Forged",
         'block_number': block['block_number'],
-        'transactions': block['transactions'],
+        'votes': block['votes'],
         'nonce': block['nonce'],
         'previous_hash': block['previous_hash'],
     }
@@ -118,8 +118,6 @@ def get_nodes():
     nodes = list(blockchain.nodes)
     response = {'nodes': nodes}
     return jsonify(response), 200
-
-
 
 if __name__ == '__main__':
     from argparse import ArgumentParser

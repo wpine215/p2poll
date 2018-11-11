@@ -9,13 +9,13 @@ app = Flask(__name__)
 def index():
 	return render_template('./index.html')
 
-@app.route('/make/transaction')
+@app.route('/cast/vote')
 def make_transaction():
-    return render_template('./make_transaction.html')
+	return render_template('./cast_vote.html')
 
-@app.route('/view/transactions')
+@app.route('/view/votes')
 def view_transaction():
-    return render_template('./view_transactions.html')
+	return render_template('./view_votes.html')
 
 @app.route('/wallet/new', methods=['GET'])
 def new_wallet():
@@ -29,17 +29,19 @@ def new_wallet():
 
 	return jsonify(response), 200
 
-@app.route('/generate/transaction', methods=['POST'])
-def generate_transaction():
+@app.route('/generate/vote', methods=['POST'])
+def generate_vote():
 	
-	sender_address = request.form['sender_address']
-	sender_private_key = request.form['sender_private_key']
-	recipient_address = request.form['recipient_address']
-	value = request.form['amount']
+	#### DATA MODIFIED HERE ####
+	voter_id = request.form['voter_id']
+	voter_key = request.form['voter_key']
+	poll_id = request.form['poll_id']
+	value = request.form['value']
 
-	transaction = Transaction(sender_address, sender_private_key, recipient_address, value)
+	vote = Vote(voter_id, voter_key, poll_id, value)
+	############################
 
-	response = {'transaction': transaction.to_dict(), 'signature': transaction.sign_transaction()}
+	response = {'vote': vote.to_dict(), 'signature': vote.sign_vote()}
 
 	return jsonify(response), 200
 

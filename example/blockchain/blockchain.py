@@ -33,14 +33,14 @@ from time import time
 from uuid import uuid4
 
 MINING_SENDER = "THE BLOCKCHAIN"
-MINING_REWARD = 1
+MINING_REWARD = 100
 MINING_DIFFICULTY = 2
 
 class Blockchain:
 
     def __init__(self):
         
-        self.transactions = []
+        self.votes = []
         self.chain = []
         self.nodes = set()
         #Generate random number to be used as node_id
@@ -62,49 +62,49 @@ class Blockchain:
         else:
             raise ValueError('Invalid URL')
 
-    def verify_transaction_signature(self, sender_address, signature, transaction):
+    def verify_vote_signature(self, voter_id, signature, vote):
         """
-        Check that the provided signature corresponds to transaction
-        signed by the public key (sender_address)
+        Check that the provided signature corresponds to vote
+        signed by the public key (voter_id)
         """
-        public_key = RSA.importKey(binascii.unhexlify(sender_address))
+        public_key = RSA.importKey(binascii.unhexlify(voter_id))
         verifier = PKCS1_v1_5.new(public_key)
-        h = SHA.new(str(transaction).encode('utf8'))
+        h = SHA.new(str(vote).encode('utf8'))
         return verifier.verify(h, binascii.unhexlify(signature))
 
-    def submit_transaction(self, sender_address, recipient_address, value, signature):
+    def submit_vote(self, voter_id, poll_id, value, signature):
         """
         Add a transaction to transactions array if the signature verified
         """
-        transaction = OrderedDict({'sender_address': sender_address, 
-                                    'recipient_address': recipient_address,
+        vote = OrderedDict({'voter_id': voter_id, 
+                                    'poll_id': poll_id,
                                     'value': value})
 
         # Reward for mining a block
-        if sender_address == MINING_SENDER:
-            self.transactions.append(transaction)
+        if voter_id == MINING_SENDER:
+            self.votes.append(vote)
             return len(self.chain) + 1
-        # Manages transactions from wallet to another wallet
+        # Manages votess from wallet to another wallet
         else:
-            transaction_verification = self.verify_transaction_signature(sender_address, signature, transaction)
-            if transaction_verification:
-                self.transactions.append(transaction)
+            vote_verification = self.verify_vote_signature(voter_id, signature, vote)
+            if vote_verification:
+                self.votes.append(vote)
                 return len(self.chain) + 1
             else:
                 return False
 
     def create_block(self, nonce, previous_hash):
         """
-        Add a block of transactions to the blockchain
+        Add a block of votes to the blockchain
         """
         block = {'block_number': len(self.chain) + 1,
                 'timestamp': time(),
-                'transactions': self.transactions,
+                'votes': self.votes,
                 'nonce': nonce,
                 'previous_hash': previous_hash}
 
-        # Reset the current list of transactions
-        self.transactions = []
+        # Reset the current list of votes
+        self.votes = []
 
         self.chain.append(block)
         return block
@@ -126,16 +126,16 @@ class Blockchain:
         last_hash = self.hash(last_block)
 
         nonce = 0
-        while self.valid_proof(self.transactions, last_hash, nonce) is False:
+        while self.valid_proof(self.votes, last_hash, nonce) is False:
             nonce += 1
 
         return nonce
 
-    def valid_proof(self, transactions, last_hash, nonce, difficulty=MINING_DIFFICULTY):
+    def valid_proof(self, votes, last_hash, nonce, difficulty=MINING_DIFFICULTY):
         """
         Check if a hash value satisfies the mining conditions. This function is used within the proof_of_work function.
         """
-        guess = (str(transactions)+str(last_hash)+str(nonce)).encode()
+        guess = (str(votes)+str(last_hash)+str(nonce)).encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:difficulty] == '0'*difficulty
 
@@ -156,13 +156,13 @@ class Blockchain:
                 return False
 
             # Check that the Proof of Work is correct
-            #Delete the reward transaction
-            transactions = block['transactions'][:-1]
+            #Delete the reward vote
+            votes = block['votes'][:-1]
             # Need to make sure that the dictionary is ordered. Otherwise we'll get a different hash
-            transaction_elements = ['sender_address', 'recipient_address', 'value']
-            transactions = [OrderedDict((k, transaction[k]) for k in transaction_elements) for transaction in transactions]
+            vote_elements = ['voter_id', 'poll_id', 'value']
+            votes = [OrderedDict((k, vote[k]) for k in vote_elements) for vote in votes]
 
-            if not self.valid_proof(transactions, block['previous_hash'], block['nonce'], MINING_DIFFICULTY):
+            if not self.valid_proof(votes, block['previous_hash'], block['nonce'], MINING_DIFFICULTY):
                 return False
 
             last_block = block
