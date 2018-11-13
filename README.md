@@ -19,7 +19,7 @@ For Windows users, change the capitalization of crypto to Crypto to use withdraw
 
 ## Contributors
 * **Bart Considine**
-* **Jeff Luen**
+* **Jeff Hui**
 * **Julia Ma**
 * **William Pine**
 * **Yirui Ruan**
