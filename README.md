@@ -2,6 +2,7 @@
 P2Poll is a distributed voting system that runs on a simple blockchain.
 
 ## Getting Started
+The project currently resides in the /example/ directory.
 Make sure you are running Python >=3.6. Install the necessary requirements into venv:
 ```
 pip install -r requirements.txt
