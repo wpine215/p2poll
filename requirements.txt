@@ -24,4 +24,4 @@ twilio==6.19.2
 u-msgpack-python==2.5.0
 urllib3==1.24.1
 uuid==1.30
-Werkzeug==0.14.1
+Werkzeug==0.15.3
