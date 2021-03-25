@@ -15,7 +15,7 @@ Naked==0.1.31
 PyJWT==1.6.4
 PySocks==1.6.8
 pytz==2018.7
-PyYAML==3.13
+PyYAML==5.4
 requests==2.20.1
 rpcudp==3.0.0
 shellescape==3.4.1
