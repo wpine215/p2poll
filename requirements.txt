@@ -22,6 +22,6 @@ shellescape==3.4.1
 six==1.11.0
 twilio==6.19.2
 u-msgpack-python==2.5.0
-urllib3==1.24.1
+urllib3==1.26.5
 uuid==1.30
 Werkzeug==0.14.1
